@@ -4,7 +4,9 @@
   "description": "A RESTful API that services users of the Pic Metric app.",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env DB_ENV=testing jest --watch --verbose"
+    "test": "cross-env DB_ENV=testing jest --watch --verbose",
+    "server": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -29,10 +31,10 @@
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.2",
+    "morgan": "^1.9.1",
     "sqlite3": "^4.1.0"
   },
   "devDependencies": {
-    "morgan": "^1.9.1",
     "nodemon": "^1.19.4"
   }
 }
