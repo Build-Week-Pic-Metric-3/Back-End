@@ -1,0 +1,32 @@
+[
+  {
+    "source": "https://i.redd.it/ukkmuzrmsbs31.jpg",
+    "hash": "b7cd81157356e26dfc83bc87147f5497",
+    "pred": {
+      "bow_tie": 0.7669745,
+      "television": 0.03597795,
+      "bobsled": 0.024888514
+    },
+    "error": ""
+  },
+  {
+    "source": "https://i.redd.it/ukkmuzrmsbs31.jpg",
+    "hash": "b7cd81157356e26dfc83bc87147f5497",
+    "pred": {
+      "bow_tie": 0.7669745,
+      "television": 0.03597795,
+      "bobsled": 0.024888514
+    },
+    "error": ""
+  },
+  {
+    "source": "https://i.redd.it/ukkmuzrmsbs31.jpg",
+    "hash": "b7cd81157356e26dfc83bc87147f5497",
+    "pred": {
+      "bow_tie": 0.7669745,
+      "television": 0.03597795,
+      "bobsled": 0.024888514
+    },
+    "error": ""
+  }
+]
