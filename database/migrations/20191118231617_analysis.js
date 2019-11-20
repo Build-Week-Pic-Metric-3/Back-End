@@ -10,10 +10,10 @@ exports.up = function(knex) {
       .onUpdate("cascade")
       .onDelete("cascade");
 
-    analysis.integer("photo_id");
+    analysis.integer("image_id");
     analysis
-      .foreign("photo_id")
-      .references("photos.id")
+      .foreign("image_id")
+      .references("images.id")
       .onUpdate("cascade")
       .onDelete("cascade");
 
