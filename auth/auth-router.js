@@ -39,7 +39,6 @@ router.post("/login", (req, res) => {
       }
     })
     .catch(error => {
-      console.log(error);
       res.status(500).json({ message: "Internal error when logging user in." });
     });
 });
@@ -49,8 +48,6 @@ function getJwtToken(username, id) {
     username,
     id
   };
-
-  console.log("did the payload actually contain the user id?", payload);
 
   const secret = process.env.JWT_SECRET;
 
