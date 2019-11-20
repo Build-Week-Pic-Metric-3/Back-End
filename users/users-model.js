@@ -21,7 +21,6 @@ function find(id) {
 
 // returns relevant information about the user, currently only returns id the user if it's needed
 function findByEmail(filter) {
-  console.log("searching db with this username", filter);
   return db("users")
     .select("username", "password", "id")
     .where(filter)
