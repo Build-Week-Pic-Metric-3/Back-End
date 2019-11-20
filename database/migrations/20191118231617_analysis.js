@@ -17,12 +17,11 @@ exports.up = function(knex) {
       .onUpdate("cascade")
       .onDelete("cascade");
 
-    analysis.varchar("pred1", 255);
-    analysis.float("pred1_val");
-    analysis.varchar("pred2", 255);
-    analysis.float("pred2_val");
-    analysis.varchar("pred3", 255);
-    analysis.float("pred3_val");
+    analysis.varchar("source").notNullable();
+
+    analysis.string("reznet");
+
+    analysis.string("yolov3");
   });
 };
 
