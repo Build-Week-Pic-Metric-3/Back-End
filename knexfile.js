@@ -14,9 +14,23 @@ module.exports = {
     }
   },
 
+  testing: {
+    client: "sqlite3",
+    connection: {
+      filename: "./database/dev.sqlite3"
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: "./database/migrations",
+      tableName: "dbmigrations"
+    },
+    seeds: {
+      directory: "./database/seeds"
+    }
+  },
+
   production: {
     client: "pg",
-    useNullAsDefault: true,
     connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
