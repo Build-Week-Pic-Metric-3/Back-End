@@ -1,16 +1,35 @@
 const db = require("../database/dbConfig");
 
 module.exports = {
-  find,
+  findByUser,
+  findById,
   add,
   remove
 };
 
-// gets the analysis and returns
-function find() {}
+// Adds the analysis to the specific user
+function add(analysis, userID) {
+  const added = {
+    ...analysis,
+    user_id: userID
+  };
+  return db("analysis")
+    .insert(added)
+    .then(([id]) => {
+      console.log("this is the id of analysis", id);
+      findById(id);
+    });
+}
 
-// gets the add function and returns whatever
-function add() {}
+// retrieves all of the analysis saved by a user
+function findByUser() {}
+
+// retrieves the analysis specified, not sure if Frontend needs
+function findById(id) {
+  return db("analysis")
+    .where({ id })
+    .first();
+}
 
 // deletes the analysis from the tables
 function remove(analysisID) {
