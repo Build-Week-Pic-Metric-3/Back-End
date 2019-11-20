@@ -2,8 +2,14 @@ const router = require("express").Router();
 const analysisDB = require("../analysis/analysis-model");
 const authenticate = require("../auth/authentication-middleware");
 
-router.get("/", (req, res) => {
-  res.send("analysis api");
+router.get("/", authenticate, (req, res) => {
+  const { id } = req.decodedJwt;
+  analysisDB
+    .findByID(id)
+    .then(analysis => res.status(200).json(analysis))
+    .catch(err =>
+      res.status(500).json({ message: "Internal error fetching analysis." })
+    );
 });
 
 router.post("/", authenticate, (req, res) => {
@@ -15,7 +21,10 @@ router.post("/", authenticate, (req, res) => {
     delete analysis.error;
     analysisDB
       .add(analysis, id)
-      .then(added => res.status(200).json(added))
+      .then(added => {
+        console.log("this is what was added", added);
+        res.status(200).json(added);
+      })
       .catch(err => {
         // error code is only unique to SQLLite, I have no idea what error code or error object Postgres sends, needs more research
         if (err.errno === 19) {
