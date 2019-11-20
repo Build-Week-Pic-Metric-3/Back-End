@@ -1,3 +1,4 @@
+require("dotenv").config();
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -25,9 +26,8 @@ router.post("/login", (req, res) => {
   users
     .findByEmail({ username })
     .then(user => {
-      console.log("this is the user data", user);
       if (user && bcrypt.compareSync(password, user.password)) {
-        const token = getJwtToken(user.username);
+        const token = getJwtToken(user.username, user.id);
         res.status(200).json({
           // don't return the hashed password
           username: user.username,
@@ -44,12 +44,15 @@ router.post("/login", (req, res) => {
     });
 });
 
-function getJwtToken(username) {
+function getJwtToken(username, id) {
   const payload = {
-    username
+    username,
+    id
   };
 
-  const secret = process.env.JWT_SECRET || "There Is No Cow Level";
+  console.log("did the payload actually contain the user id?", payload);
+
+  const secret = process.env.JWT_SECRET;
 
   const options = {
     expiresIn: "1d"
