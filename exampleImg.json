@@ -1,32 +1,14 @@
 [
   {
-    "source": "https://i.redd.it/ukkmuzrmsbs31.jpg",
-    "hash": "b7cd81157356e26dfc83bc87147f5497",
-    "pred": {
-      "bow_tie": 0.7669745,
-      "television": 0.03597795,
-      "bobsled": 0.024888514
-    },
-    "error": ""
+    "error": "",
+    "hash": "f17b01901c752c1bb04928131d1661af",
+    "resnet": "{'web_site': 0.046469882, 'nematode': 0.03358768, 'digital_watch': 0.030870724}",
+    "source": "https://i.redd.it/t5gqutndubs31.png"
   },
   {
-    "source": "https://i.redd.it/ukkmuzrmsbs31.jpg",
-    "hash": "b7cd81157356e26dfc83bc87147f5497",
-    "pred": {
-      "bow_tie": 0.7669745,
-      "television": 0.03597795,
-      "bobsled": 0.024888514
-    },
-    "error": ""
-  },
-  {
-    "source": "https://i.redd.it/ukkmuzrmsbs31.jpg",
-    "hash": "b7cd81157356e26dfc83bc87147f5497",
-    "pred": {
-      "bow_tie": 0.7669745,
-      "television": 0.03597795,
-      "bobsled": 0.024888514
-    },
-    "error": ""
+    "error": "",
+    "hash": "7844c0f891907246c067202b9631f989",
+    "resnet": "{'bulletproof_vest': 0.22700253, 'gasmask': 0.19664158, 'assault_rifle': 0.1390793}",
+    "source": "https://i.redd.it/asnxp0mahfz31.jpg"
   }
 ]
