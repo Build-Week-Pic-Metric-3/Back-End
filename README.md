@@ -143,3 +143,15 @@ These parameters will continue to evolve depending on the DS's API. It will alwa
 | hash   | String | Yes      | Hash of the saved image            |
 | resnet | String | No       | String output of resnet's analyis  |
 | yolov3 | String | No       | String output of yolov3's analysis |
+
+#### Analysis Save Response
+
+```json
+{
+  "user_id": 1,
+  "analysis_id": 1,
+  "hash": "7844c0f891907246c067202b9631f989",
+  "resnet": "{'bulletproof_vest': 0.22700253, 'gasmask': 0.19664158, 'assault_rifle': 0.1390793}",
+  "source": "https://i.redd.it/asnxp0mahfz31.jpg"
+}
+```
