@@ -21,8 +21,8 @@ Temporary Documentation
 
 ```js
 {
-  username: user2,
-  password: password2
+  username: "user2",
+  password: "password2"
 }
 ```
 
@@ -30,18 +30,18 @@ Temporary Documentation
 
 ```js
 {
-"username": "user2",
-"id": 2,
-"token": "tokenStringGoesHere"
+  username: "user2",
+  id: 2,
+  token: "tokenStringGoesHere"
 }
 ```
 
 #### Log In Error Response
 
-```
+```js
 HTTP 401
 {
-  "message": "Invalid credentials"
+  message: "Invalid credentials"
 }
 
 ```
@@ -56,24 +56,24 @@ HTTP 401
 
 ```js
 {
-  username: user2,
-  password: password2
+  username: "user2",
+  password: "password2"
 }
 ```
 
 #### Parameters
 
-| Name     | Type   | Description            |
-| -------- | ------ | ---------------------- |
-| username | String | <p>User's email</p>    |
-| password | String | <p>User's password</p> |
+| Name     | Type   | Description     |
+| -------- | ------ | --------------- |
+| username | String | User's email    |
+| password | String | User's password |
 
 #### Register Success Response
 
-```js
+```json
 {
-"username": "user2",
-"id": 2,
+  "username": "user2",
+  "id": 2
 }
 ```
 
@@ -98,6 +98,8 @@ HTTP 500
 
 ### Retrieve a user's saved photos and analysis
 
+---
+
     GET /api/analysis
 
 #### Parameters
@@ -111,24 +113,63 @@ Note that the token payload already includes metadata of the user, there is no n
 #### Analysis GET Success Response
 
 ```js
-{
-"username": "user2",
-"id": 2,
-}
+[
+  {
+    faces_source:
+      "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_faces.png",
+    hash: "07020d585b1e4fec65838eb462f58562",
+    original:
+      "http://picmetric3.s3.amazonaws.com/07020d585b1e4fec65838eb462f58562.png",
+    resnet:
+      '{"sunglasses": "0.6676245", "sunglass": "0.3276029", "bolo_tie": "0.00093378656"}',
+    yolov3: '{"person": "99.90501403808594"}',
+    yolov3_source:
+      "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_yolov3.png"
+  },
+  {
+    faces_source:
+      "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_faces.png",
+    hash: "07020d585b1e4fec65838eb462f58562",
+    original:
+      "http://picmetric3.s3.amazonaws.com/07020d585b1e4fec65838eb462f58562.png",
+    resnet:
+      '{"sunglasses": "0.6676245", "sunglass": "0.3276029", "bolo_tie": "0.00093378656"}',
+    yolov3: '{"person": "99.90501403808594"}',
+    yolov3_source:
+      "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_yolov3.png"
+  },
+  {
+    faces_source:
+      "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_faces.png",
+    hash: "07020d585b1e4fec65838eb462f58562",
+    original:
+      "http://picmetric3.s3.amazonaws.com/07020d585b1e4fec65838eb462f58562.png",
+    resnet:
+      '{"sunglasses": "0.6676245", "sunglass": "0.3276029", "bolo_tie": "0.00093378656"}',
+    yolov3: '{"person": "99.90501403808594"}',
+    yolov3_source:
+      "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_yolov3.png"
+  }
+];
 ```
 
 ### Save a user's photo and associated analysis
 
-    POST /api/photos
+---
+
+    POST /api/analysis
 
 #### Analysis Save Request
 
 ```json
 {
   "error": "",
-  "hash": "7844c0f891907246c067202b9631f989",
-  "resnet": "{'bulletproof_vest': 0.22700253, 'gasmask': 0.19664158, 'assault_rifle': 0.1390793}",
-  "source": "https://i.redd.it/asnxp0mahfz31.jpg"
+  "faces_source": "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_faces.png",
+  "hash": "07020d585b1e4fec65838eb462f58562",
+  "original": "http://picmetric3.s3.amazonaws.com/07020d585b1e4fec65838eb462f58562.png",
+  "resnet": "{\"sunglasses\": \"0.6676245\", \"sunglass\": \"0.3276029\", \"bolo_tie\": \"0.00093378656\"}",
+  "yolov3": "{\"person\": \"99.90501403808594\"}",
+  "yolov3_source": "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_yolov3.png"
 }
 ```
 
@@ -136,22 +177,89 @@ Note that the token payload already includes metadata of the user, there is no n
 
 These parameters will continue to evolve depending on the DS's API. It will always try to match what the DS API outputs to keep things simple.
 
-| Name   | Type   | Required | Description                        |
-| ------ | ------ | -------- | ---------------------------------- |
-| token  | String | Yes      | Token in authorization headers     |
-| source | String | Yes      | Source URL of the image            |
-| hash   | String | Yes      | Hash of the saved image            |
-| resnet | String | No       | String output of resnet's analyis  |
-| yolov3 | String | No       | String output of yolov3's analysis |
+| Name   | Type   | Required | Description                                         |
+| ------ | ------ | -------- | --------------------------------------------------- |
+| token  | String | Yes      | Token in authorization headers                      |
+| error  | any    | No       | Backend will abort any requests with an error field |
+| source | String | Yes      | Source URL of the image                             |
+| hash   | String | Yes      | Hash of the saved image                             |
+| resnet | String | No       | String output of resnet's analyis                   |
+| yolov3 | String | No       | String output of yolov3's analysis                  |
 
 #### Analysis Save Response
 
 ```json
+HTTP 201
 {
-  "user_id": 1,
-  "analysis_id": 1,
-  "hash": "7844c0f891907246c067202b9631f989",
-  "resnet": "{'bulletproof_vest': 0.22700253, 'gasmask': 0.19664158, 'assault_rifle': 0.1390793}",
-  "source": "https://i.redd.it/asnxp0mahfz31.jpg"
+  "user_id" : "IDThatWasInTheToken",
+  "analysis_id" : 1,
+  "faces_source": "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_faces.png",
+  "hash": "07020d585b1e4fec65838eb462f58562",
+  "original": "http://picmetric3.s3.amazonaws.com/07020d585b1e4fec65838eb462f58562.png",
+  "resnet": "{\"sunglasses\": \"0.6676245\", \"sunglass\": \"0.3276029\", \"bolo_tie\": \"0.00093378656\"}",
+  "yolov3": "{\"person\": \"99.90501403808594\"}",
+  "yolov3_source": "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_yolov3.png"
 }
 ```
+
+### Delete a User's Saved Analysis
+
+---
+
+DELETE /api/analysis
+
+#### Parameters
+
+| Name  | Type    | Required | Description                                                  |
+| ----- | ------- | -------- | ------------------------------------------------------------ |
+| id    | integer | Yes      | ID of the analysis, user_id is already included in the token |
+| token | string  | Yes      | Token must be included in authorization headers              |
+
+#### Analysis Delete Request Example
+
+```json
+HTTP DEL
+{
+  id: 1
+}
+```
+
+#### Analysis Delete Success Response
+
+```json
+HTTP 200
+{
+  message: "Success"
+}
+```
+
+#### Analysis Delete Error Response
+
+```json
+HTTP 500
+{
+  message: "Internal error when deleting analysis"
+}
+```
+
+## URL Submission
+
+```
+GET /do_data_science/
+```
+
+## Parameters
+
+Query string: url : "URLofImageGoesHere"
+
+## Image Submission
+
+```
+POST /do_data-science/
+```
+
+## Parameters
+
+content-type: 'multipart/form-data'
+
+Image must be under property `file` in multiparty form object.
