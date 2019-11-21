@@ -26,7 +26,6 @@ function findAllByUserID(user_id) {
 // retrieves the analysis specified, not sure if Frontend needs
 function findByID(id) {
   return db("analysis")
-    .select("id", "hash", "source", "user_id", "resnet", "yolov3")
     .where({ id })
     .first();
 }

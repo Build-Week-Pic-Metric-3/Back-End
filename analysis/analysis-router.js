@@ -24,7 +24,6 @@ router.post("/", authenticate, (req, res) => {
     analysisDB
       .add(analysis, id)
       .then(added => {
-        console.log("this is what was added", added);
         res.status(200).json(added);
       })
       .catch(err => {
@@ -35,6 +34,7 @@ router.post("/", authenticate, (req, res) => {
               "Internal error, tried to save analysis to a user that does not exist."
           });
         }
+        console.log(err);
         res
           .status(500)
           .json({ message: "Internal error when saving analysis" });
