@@ -1,14 +1,9 @@
-[
-  {
-    "error": "",
-    "hash": "f17b01901c752c1bb04928131d1661af",
-    "resnet": "{'web_site': 0.046469882, 'nematode': 0.03358768, 'digital_watch': 0.030870724}",
-    "source": "https://i.redd.it/t5gqutndubs31.png"
-  },
-  {
-    "error": "",
-    "hash": "7844c0f891907246c067202b9631f989",
-    "resnet": "{'bulletproof_vest': 0.22700253, 'gasmask': 0.19664158, 'assault_rifle': 0.1390793}",
-    "source": "https://i.redd.it/asnxp0mahfz31.jpg"
-  }
-]
+{
+  "error": "",
+  "faces_source": "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_faces.png",
+  "hash": "07020d585b1e4fec65838eb462f58562",
+  "original": "http://picmetric3.s3.amazonaws.com/07020d585b1e4fec65838eb462f58562.png",
+  "resnet": "{\"sunglasses\": \"0.6676245\", \"sunglass\": \"0.3276029\", \"bolo_tie\": \"0.00093378656\"}",
+  "yolov3": "{\"person\": \"99.90501403808594\"}",
+  "yolov3_source": "http://picmetric3.s3.amazonaws.com/93cc62cb0b79f774037c6980052d60f1_yolov3.png"
+}
