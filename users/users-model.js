@@ -29,7 +29,7 @@ function findByEmail(filter) {
 
 function add(user) {
   return db("users")
-    .insert(user)
+    .insert(user, "id")
     .then(([id]) => find(id));
 }
 

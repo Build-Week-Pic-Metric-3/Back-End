@@ -14,7 +14,7 @@ function add(analysis, userID) {
     user_id: userID
   };
   return db("analysis")
-    .insert(added)
+    .insert(added, "id")
     .then(([id]) => findByID(id));
 }
 
