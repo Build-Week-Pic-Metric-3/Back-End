@@ -2,13 +2,15 @@ const router = require("express").Router();
 const analysisDB = require("../analysis/analysis-model");
 const authenticate = require("../auth/authentication-middleware");
 
+//returns all analysis by a user as an array
 router.get("/", authenticate, (req, res) => {
+  console.log("made it to the all analysis endpoint");
   const { id } = req.decodedJwt;
   analysisDB
-    .findByID(id)
+    .findAllByUserID(id)
     .then(analysis => res.status(200).json(analysis))
     .catch(err =>
-      res.status(500).json({ message: "Internal error fetching analysis." })
+      res.status(500).json({ message: "Internal error fetching analysis" })
     );
 });
 
