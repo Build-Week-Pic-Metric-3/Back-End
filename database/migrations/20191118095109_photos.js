@@ -1,8 +1,8 @@
 exports.up = function(knex) {
   return knex.schema.createTable("analysis", analysis => {
     analysis.increments();
-    analysis.varchar("hash", 255).notNullable();
-    analysis.varchar("source", 255).notNullable();
+    analysis.varchar("hash").notNullable();
+    analysis.varchar("original").notNullable();
 
     analysis.integer("user_id");
     analysis
@@ -13,6 +13,9 @@ exports.up = function(knex) {
 
     analysis.string("resnet");
     analysis.string("yolov3");
+    analysis.varchar("yolov3_source");
+    //faces returns a marked up image, there is no text analysis with it
+    analysis.varchar("faces_source");
   });
 };
 
