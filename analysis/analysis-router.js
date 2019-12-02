@@ -42,4 +42,9 @@ router.post("/", authenticate, (req, res) => {
   }
 });
 
+router.delete("/", authenticate, (req, res) => {
+  const { id } = req.decodedJwt;
+  analysisDB.remove(id);
+});
+
 module.exports = router;
