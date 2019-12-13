@@ -44,7 +44,18 @@ router.post("/", authenticate, (req, res) => {
 
 router.delete("/", authenticate, (req, res) => {
   const { id } = req.decodedJwt;
-  analysisDB.remove(id);
+  analysisDB
+    .remove(id)
+    .then(removed =>
+      res
+        .status(200)
+        .json({ message: `Analysis with id ${id} has been removed` })
+    )
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: "Interal error when trying to delete analysis." });
+    });
 });
 
 module.exports = router;
